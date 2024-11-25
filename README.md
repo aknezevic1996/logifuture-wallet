@@ -1,4 +1,4 @@
-# Logifuture Wallet Demo
+# Logifuture Wallet Challenge
 
 ## Description
 
@@ -87,7 +87,7 @@ within `docker-compose.yml` but this would be externalized in a production envir
 
 A production environment would also use authorization using a username and password along
 with something like a JWT that ensures the user is authorized to call the endpoints. However,
-we are not concerned with saving user data or credentials in this demo.
+we are not concerned with saving user data or credentials in this challenge.
 
 Redis would also use credentials and have the container be hosted in a VPC in a production
 setting.
