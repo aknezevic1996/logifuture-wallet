@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8081:8081"
+    links:
+      - redis
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+    environment:
+      AUTH_TOKEN: qwerty123 #In production this would be externalized
+    networks:
+      - spring_redis
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - spring_redis
+
+networks:
+  spring_redis:
+    name: spring_redis
