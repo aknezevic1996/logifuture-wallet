@@ -13,9 +13,13 @@ Docker is required to run this application.
 
 ### Starting the App
 
-Within the root directory of the project, run `docker-compose up`. This will containerize
-and run a Redis image as well as the application. Once the app successfully loads,
-HTTP requests can be made.
+Within the root directory of the project, run `./gradlew clean build`. This will generate
+the JAR file of the application. Note that this may take a few minutes to execute the tests.
+Then run `docker-compose up`. This will containerize and run a Redis image as well as the 
+application. Once the app successfully loads, HTTP requests can be made.
+
+To gracefully close the containers, use the `CTRL+C` keyboard input and run 
+`docker-compose down`
 
 ### Authentication
 
@@ -88,7 +92,11 @@ within `docker-compose.yml` but this would be externalized in a production envir
 
 A production environment would also use authorization using a username and password along
 with something like a JWT that ensures the user is authorized to call the endpoints. However,
-we are not concerned with saving user data or credentials in this challenge.
+the challenge does not involve saving user credentials.
 
 Redis would also use credentials and have the container be hosted in a VPC in a production
 setting.
+
+In production, controller tests would have both integration and unit tests. In the interest
+of time, I only unit-tested the controller logic with @SpringBootTest instead of @WebMvcTest
+which created an application context. I also opted not to include repository unit tests.
