@@ -34,6 +34,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.github.codemonstur:embedded-redis:1.4.3")
     testImplementation("org.mockito:mockito-core")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

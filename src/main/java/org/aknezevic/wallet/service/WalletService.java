@@ -1,8 +1,7 @@
 package org.aknezevic.wallet.service;
 
-import lombok.extern.slf4j.Slf4j;
-import org.aknezevic.wallet.model.Wallet;
 import org.aknezevic.wallet.exception.WalletException;
+import org.aknezevic.wallet.model.Wallet;
 import org.aknezevic.wallet.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
-@Slf4j
 @Service
 public class WalletService {
 
@@ -27,6 +25,10 @@ public class WalletService {
     }
 
     public Wallet addFundsById(UUID id, BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new WalletException("Amount must be greater than 0!");
+        }
+
         Optional<Wallet> existingWallet = walletRepo.findById(id);
 
         if (existingWallet.isPresent()) {
@@ -42,6 +44,10 @@ public class WalletService {
     }
 
     public Wallet removeFundsById(UUID id, BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new WalletException("Amount must be greater than 0!");
+        }
+
         Optional<Wallet> existingWallet = walletRepo.findById(id);
 
         if (existingWallet.isPresent()) {

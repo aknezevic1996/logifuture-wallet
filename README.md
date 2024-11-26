@@ -73,6 +73,7 @@ balance.
 (true) or removing (false) funds.
 
 `amount` is a required decimal query parameter indicating the amount to add or remove.
+This value must be greater than 0.
 
 As the server is handling the addition and subtraction between the provided amount and the
 wallet's current balance, the `PATCH` only updates the `balance` field in the `Wallet` 
